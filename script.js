@@ -5,7 +5,7 @@ const products = [
     id: 1, name: "iPhone XR", category: "iphones", type: "UK Used", 
     desc: "64GB / 128GB / 256GB Storage options available.", 
     price: "₦220,000 - ₦255,000", numericPrice: 235000, 
-    image: "/TOBEX /XR.png",
+    image: "XR.png",
     icon: "fa-mobile-screen-button",
     design: { size: "6.1-inch LCD", res: "1792 x 828", refresh: "60Hz", weight: "194 g" }, 
     performance: { chip: "Apple A12 Bionic", ram: "3 GB RAM", storage: "64GB - 256GB" }, 
