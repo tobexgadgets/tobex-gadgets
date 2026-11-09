@@ -338,7 +338,7 @@ const products = [
     id: 35, name: "Samsung Galaxy S10+ / 5G", category: "samsung", type: "UK Used", 
     desc: "128GB / 256GB / 512GB Storage options available.", 
     price: "₦250,000 - ₦360,000", numericPrice: 305000, 
-    image: "10plus.png", 
+    image: "s10plus.png", 
     icon: "fa-mobile-button",
     design: { size: "6.7-inch AMOLED", res: "3040 x 1440", refresh: "60Hz", weight: "198 g" }, 
     performance: { chip: "Snapdragon 855", ram: "8 GB RAM", storage: "128GB - 512GB" }, 
