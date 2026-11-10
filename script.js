@@ -758,10 +758,41 @@ const products = [
 ];
 
 document.addEventListener("DOMContentLoaded", function() {
+  setupThemeToggle();
   renderProducts("all");
   setupFilterListeners();
   setupNativeDatalistSearch();
 });
+
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById("themeToggleBtn");
+  const themeIcon = document.getElementById("themeIcon");
+  const htmlElement = document.documentElement;
+
+  // Check saved preference or system preference
+  const savedTheme = localStorage.getItem("tobex_theme");
+  if (savedTheme) {
+    htmlElement.setAttribute("data-theme", savedTheme);
+    if (savedTheme === "light") {
+      themeIcon.className = "fa-solid fa-sun";
+    }
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", function() {
+      const currentTheme = htmlElement.getAttribute("data-theme");
+      if (currentTheme === "light") {
+        htmlElement.removeAttribute("data-theme");
+        localStorage.setItem("tobex_theme", "dark");
+        themeIcon.className = "fa-solid fa-moon";
+      } else {
+        htmlElement.setAttribute("data-theme", "light");
+        localStorage.setItem("tobex_theme", "light");
+        themeIcon.className = "fa-solid fa-sun";
+      }
+    });
+  }
+}
 
 function setupNativeDatalistSearch() {
   const datalist = document.getElementById("catalogList");
@@ -776,7 +807,7 @@ function setupNativeDatalistSearch() {
 
   const input1 = document.getElementById("compareInput1");
   const input2 = document.getElementById("compareInput2");
-  if (input1) input1.value = "iPhone 13";
+  if (input1) input1.value = "iPhone XR";
   if (input2) input2.value = "Samsung Galaxy S23 Ultra";
 
   const compareBtn = document.getElementById("triggerCompareBtn");
@@ -819,14 +850,9 @@ function renderComparisonGridFromInputs() {
   }
 
   const minPrice = Math.min.apply(null, selectedProducts.map(function(p) { return p.numericPrice; }));
-  const batteries = selectedProducts.map(function(p) { return p.battery ? parseInt(p.battery.capacity.replace(/[^0-9]/g, '')) || 0 : 0; });
-  const maxBattery = Math.max.apply(null, batteries);
 
   selectedProducts.forEach(function(dev) {
     const isCheapest = dev.numericPrice === minPrice;
-    const batVal = dev.battery ? parseInt(dev.battery.capacity.replace(/[^0-9]/g, '')) || 0 : 0;
-    const isBiggestBattery = batVal > 0 && batVal === maxBattery;
-
     const colCard = document.createElement("div");
     colCard.className = "compare-column-card";
 
@@ -841,7 +867,7 @@ function renderComparisonGridFromInputs() {
 
     colCard.innerHTML = `
       <div class="compare-header-box">
-        <div class="compare-thumb-wrapper" style="width: 70px; height: 70px; margin: 0 auto 10px; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 70px; height: 70px; margin: 0 auto 10px; background: rgba(128,128,128,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
           ${mediaCompareHTML}
         </div>
         <h4>${dev.name}</h4>
@@ -849,40 +875,26 @@ function renderComparisonGridFromInputs() {
       </div>
 
       <div class="spec-category-group">
-        <div class="spec-category-header"><span><i class="fa-solid fa-mobile"></i> Design & Display</span></div>
+        <div class="spec-category-header"><i class="fa-solid fa-mobile"></i> Display</div>
         <div class="spec-category-body">
           <div class="spec-row"><span class="spec-label">Screen:</span><span class="spec-val">${design.size}</span></div>
           <div class="spec-row"><span class="spec-label">Resolution:</span><span class="spec-val">${design.res}</span></div>
-          <div class="spec-row"><span class="spec-label">Refresh Rate:</span><span class="spec-val">${design.refresh}</span></div>
-          <div class="spec-row"><span class="spec-label">Weight:</span><span class="spec-val">${design.weight}</span></div>
         </div>
       </div>
 
       <div class="spec-category-group">
-        <div class="spec-category-header"><span><i class="fa-solid fa-microchip"></i> Performance</span></div>
+        <div class="spec-category-header"><i class="fa-solid fa-microchip"></i> Performance</div>
         <div class="spec-category-body">
-          <div class="spec-row"><span class="spec-label">Processor:</span><span class="spec-val">${perf.chip}</span></div>
-          <div class="spec-row"><span class="spec-label">Memory:</span><span class="spec-val">${perf.ram}</span></div>
-          <div class="spec-row"><span class="spec-label">Storage:</span><span class="spec-val">${perf.storage}</span></div>
+          <div class="spec-row"><span class="spec-label">Chip:</span><span class="spec-val">${perf.chip}</span></div>
+          <div class="spec-row"><span class="spec-label">RAM:</span><span class="spec-val">${perf.ram}</span></div>
         </div>
       </div>
 
       <div class="spec-category-group">
-        <div class="spec-category-header"><span><i class="fa-solid fa-camera"></i> Camera System</span></div>
+        <div class="spec-category-header"><i class="fa-solid fa-battery-full"></i> Battery</div>
         <div class="spec-category-body">
-          <div class="spec-row"><span class="spec-label">Main Camera:</span><span class="spec-val">${cam.main}</span></div>
-          <div class="spec-row"><span class="spec-label">Ultra-wide:</span><span class="spec-val">${cam.ultrawide}</span></div>
-          <div class="spec-row"><span class="spec-label">Telephoto:</span><span class="spec-val">${cam.telephoto}</span></div>
-          <div class="spec-row"><span class="spec-label">Selfie Cam:</span><span class="spec-val">${cam.selfie}</span></div>
-        </div>
-      </div>
-
-      <div class="spec-category-group">
-        <div class="spec-category-header"><span><i class="fa-solid fa-battery-full"></i> Power & Battery</span></div>
-        <div class="spec-category-body">
-          <div class="spec-row"><span class="spec-label">Capacity:</span><span class="spec-val ${isBiggestBattery ? 'winner-highlight' : ''}">${bat.capacity} ${isBiggestBattery ? '⚡ Largest' : ''}</span></div>
+          <div class="spec-row"><span class="spec-label">Capacity:</span><span class="spec-val">${bat.capacity}</span></div>
           <div class="spec-row"><span class="spec-label">Charging:</span><span class="spec-val">${bat.charging}</span></div>
-          <div class="spec-row"><span class="spec-label">Wireless:</span><span class="spec-val">${bat.wireless}</span></div>
         </div>
       </div>
 
@@ -909,7 +921,7 @@ function renderProducts(category) {
     card.className = "product-card";
     
     const waText = encodeURIComponent(
-      "Hello Tobex Gadgets! I am interested in buying: " + product.name + " (" + product.price + "). Is it currently available at your Ikeja shop?"
+      "Hello Tobex Gadgets! I am interested in buying: " + product.name + " (" + product.price + "). Is it available?"
     );
 
     const mediaHTML = product.image && product.image !== "" 

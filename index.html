@@ -15,10 +15,9 @@
   
   <!-- Social Media & WhatsApp Sharing Tags (Open Graph) -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tobexgadgets.com/" />
+  <meta property="og:url" content="https://tobexgadgets.com.ng/" />
   <meta property="og:title" content="TOBEX GADGETS | Phone Swaps & Gadget Sales in Computer Village" />
   <meta property="og:description" content="Upgrade your device easily! Visit our shop at No 4 Adepele St, Ikeja or order online via WhatsApp with secure nationwide waybill." />
-  <meta property="og:image" content="logo.png" />
   
   <!-- Schema.org Structured Data for Google Local Business Ranking -->
   <script type="application/ld+json">
@@ -26,7 +25,6 @@
       "@context": "https://schema.org",
       "@type": "ElectronicsStore",
       "name": "TOBEX GADGETS",
-      "image": "logo.png",
       "telephone": "+2348092312691",
       "email": "tobexgadget@gmail.com",
       "address": {
@@ -37,7 +35,7 @@
         "addressCountry": "NG"
       },
       "priceRange": "₦150,000 - ₦2,500,000",
-      "url": "https://tobexgadgets.com/"
+      "url": "https://tobexgadgets.com.ng/"
     }
   </script>
   
@@ -50,24 +48,17 @@
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement">
-    Computer Village Store • Swaps & Sales 24/7 • RC: 7167533
+    <span><i class="fa-solid fa-store"></i> Computer Village Store • Swaps & Sales 24/7 • RC: 7167533</span>
   </div>
 
-  <!-- Header Navigation with Logo & Jump Links & Brand name  -->
+  <!-- Header Navigation -->
   <nav class="navbar">
-   <div class="nav-brand">
-  <img src="logo.png" alt="TOBEX GADGETS Logo" class="site-logo-img" />
-  </div>
-  
-  <nav class="navbar">
-  <!-- Brand Title Container -->
-  <a>
-    <span class="brand-text-glow">TOBEX GADGETS</span>
-  </a>
-
-  <!-- Your existing filter buttons or search bar remain here -->
-</nav>
-
+    <div class="nav-brand">
+      <div class="brand-icon-box">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
+      <span class="brand-text-glow">TOBEX GADGETS</span>
+    </div>
 
     <!-- Quick Jump Links Menu -->
     <div class="nav-links">
@@ -77,9 +68,16 @@
       <a href="#contact"><i class="fa-solid fa-location-dot"></i> Contact</a>
     </div>
 
-    <a href="https://wa.me/2348092312691" target="_blank" class="nav-whatsapp-btn">
-      <i class="fa-brands fa-whatsapp"></i> Chat Us
-    </a>
+    <div class="nav-actions-group">
+      <!-- Theme Switcher Toggle Button -->
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+
+      <a href="https://wa.me/2348092312691" target="_blank" class="nav-whatsapp-btn">
+        <i class="fa-brands fa-whatsapp"></i> Chat Us
+      </a>
+    </div>
   </nav>
 
   <!-- Hero Section -->
@@ -118,7 +116,6 @@
       <button class="filter-btn" data-category="samsung">Samsung</button>
       <button class="filter-btn" data-category="laptops">Laptops</button>
       <button class="filter-btn" data-category="gaming">Gaming</button>
-      <button class="filter-btn" data-category="accessories">Accessories</button>
     </div>
 
     <!-- Products Container -->
@@ -131,46 +128,35 @@
   <section id="compare" class="section bg-card">
     <div class="section-title">
       <h3>Interactive Search Comparison</h3>
-      <p>Type any device name below, select from the suggestions, and click Compare</p>
+      <p>Type any device name below, select from suggestions, and click Compare</p>
     </div>
 
     <div class="compare-container">
-      <!-- Search Input Wrappers using Native Datalists -->
       <div class="compare-selectors-grid">
-        
-        <!-- Search Field 1 -->
         <div class="form-group">
           <label><i class="fa-solid fa-magnifying-glass"></i> Search Device 1</label>
           <input type="text" id="compareInput1" class="search-compare-input" list="catalogList" placeholder="Type model (e.g. iPhone 13)..." autocomplete="off" />
         </div>
-
-        <!-- Search Field 2 -->
         <div class="form-group">
           <label><i class="fa-solid fa-magnifying-glass"></i> Search Device 2</label>
           <input type="text" id="compareInput2" class="search-compare-input" list="catalogList" placeholder="Type model (e.g. S23 Ultra)..." autocomplete="off" />
         </div>
-
-        <!-- Search Field 3 -->
         <div class="form-group">
           <label><i class="fa-solid fa-magnifying-glass"></i> Device 3 (Optional)</label>
           <input type="text" id="compareInput3" class="search-compare-input" list="catalogList" placeholder="Type 3rd model or leave blank..." autocomplete="off" />
         </div>
-
       </div>
 
-      <!-- Global Datalist Populated by JS -->
       <datalist id="catalogList"></datalist>
 
-      <!-- Trigger Compare Button -->
       <div class="compare-action-wrapper">
         <button id="triggerCompareBtn" class="btn-main compare-submit-btn">
           <i class="fa-solid fa-code-compare"></i> Compare Devices Now
         </button>
       </div>
 
-      <!-- Comparison Grid Output -->
       <div id="comparisonGrid" class="comparison-grid-cols">
-        <!-- Injected via JavaScript upon button click -->
+        <!-- Injected via JavaScript -->
       </div>
     </div>
   </section>
@@ -217,7 +203,7 @@
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a href="https://wa.me/2348092312691?text=Hello%20Tobex%20Gadgets!%20I%20have%20an%20inquiry." target="_blank" class="whatsapp-float">
+  <a href="https://wa.me/2348092312691?text=Hello%20Tobex%20Gadgets!%20I%20have%20an%20inquiry." target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
