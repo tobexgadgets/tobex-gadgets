@@ -314,7 +314,7 @@ body {
   border-color: var(--primary-blue);
 }
 
-/* Product Cards */
+/* Product Cards & Grid */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -328,6 +328,7 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-img-wrapper {
@@ -396,6 +397,17 @@ body {
 
 .btn-buy-wa:hover {
   opacity: 0.9;
+}
+
+/* Student Deals & Campus Special Styling */
+.student-deals .product-card {
+  border-top: 3px solid var(--primary-blue);
+  background: var(--card-dark);
+}
+
+.student-deals .card-title i {
+  color: var(--primary-blue);
+  margin-right: 6px;
 }
 
 /* Comparison Tool */
@@ -632,19 +644,6 @@ body {
   transform: scale(1.08);
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .compare-selectors-grid {
-    grid-template-columns: 1fr;
-  }
-  .comparison-grid-cols {
-    grid-template-columns: 1fr !important;
-  }
-  
-  
 /* Fallback Icon Helper Rules */
 .card-icon.icon-fallback {
   display: flex;
@@ -663,4 +662,18 @@ body {
   color: var(--primary-blue);
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .hero-actions {
+    flex-direction: column;
+  }
+  .compare-selectors-grid {
+    grid-template-columns: 1fr;
+  }
+  .comparison-grid-cols {
+    grid-template-columns: 1fr !important;
+  }
 }
