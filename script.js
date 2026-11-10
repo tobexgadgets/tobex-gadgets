@@ -1,4 +1,4 @@
-// Full Catalog Dataset for TOBEX GADGETS (All Local PNG Image Paths Set)
+// Full Catalog Dataset for TOBEX GADGETS
 const products = [
   // --- iPHONES ---
   { 
@@ -455,7 +455,7 @@ const products = [
     battery: { capacity: "5,000 mAh", charging: "45W Super Fast", wireless: "Yes (Qi)" } 
   },
 
-  // --- LAPTOPS (COMPLETE MACBOOK PRICE LIST) ---
+  // --- LAPTOPS (MACBOOK PRICE LIST) ---
   { 
     id: 50, name: "MacBook Air 2015", category: "laptops", type: "UK Used", 
     desc: "4GB/8GB RAM, 128GB/256GB SSD options available.", 
@@ -757,6 +757,19 @@ const products = [
   }
 ];
 
+// Handles hiding missing or broken images and inserting the FontAwesome icon fallback dynamically
+function handleImageError(imageElement, iconClass) {
+  const parentContainer = imageElement.parentElement;
+  imageElement.style.display = 'none';
+  
+  if (!parentContainer.querySelector('.icon-fallback')) {
+    const iconWrapper = document.createElement('div');
+    iconWrapper.className = 'card-icon icon-fallback';
+    iconWrapper.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+    parentContainer.appendChild(iconWrapper);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   setupThemeToggle();
   renderProducts("all");
@@ -861,12 +874,12 @@ function renderComparisonGridFromInputs() {
     const bat = dev.battery || { capacity: "Standard Battery", charging: "Standard", wireless: "N/A" };
 
     const mediaCompareHTML = dev.image && dev.image !== "" 
-      ? '<img src="' + dev.image + '" alt="' + dev.name + '" style="width: 100%; height: 100%; object-fit: contain;" />'
-      : '<div style="font-size: 1.8rem; color: var(--primary-blue);"><i class="fa-solid ' + dev.icon + '"></i></div>';
+      ? `<img src="${dev.image}" alt="${dev.name}" style="width: 100%; height: 100%; object-fit: contain;" onerror="handleImageError(this, '${dev.icon}')" />`
+      : `<div style="font-size: 1.8rem; color: var(--primary-blue);"><i class="fa-solid ${dev.icon}"></i></div>`;
 
     colCard.innerHTML = `
       <div class="compare-header-box">
-        <div style="width: 70px; height: 70px; margin: 0 auto 10px; background: rgba(128,128,128,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 70px; height: 70px; margin: 0 auto 10px; background: rgba(128,128,128,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative;">
           ${mediaCompareHTML}
         </div>
         <h4>${dev.name}</h4>
@@ -924,8 +937,8 @@ function renderProducts(category) {
     );
 
     const mediaHTML = product.image && product.image !== "" 
-      ? '<img src="' + product.image + '" alt="' + product.name + '" class="product-thumb" />'
-      : '<div class="card-icon"><i class="fa-solid ' + product.icon + '"></i></div>';
+      ? `<img src="${product.image}" alt="${product.name}" class="product-thumb" onerror="handleImageError(this, '${product.icon}')" />`
+      : `<div class="card-icon"><i class="fa-solid ${product.icon}"></i></div>`;
 
     card.innerHTML = `
       <div class="card-img-wrapper">

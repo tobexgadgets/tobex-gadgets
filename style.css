@@ -643,4 +643,24 @@ body {
   .comparison-grid-cols {
     grid-template-columns: 1fr !important;
   }
+  
+  
+/* Fallback Icon Helper Rules */
+.card-icon.icon-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3.5rem;
+  color: var(--primary-blue);
+  background: rgba(128, 128, 128, 0.05);
+  border-radius: 8px;
+}
+
+.compare-header-box .icon-fallback {
+  font-size: 2.2rem;
+  color: var(--primary-blue);
+}
+
 }
