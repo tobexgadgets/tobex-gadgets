@@ -287,7 +287,6 @@ const products = [
     camera: { main: "48MP Fusion Main", ultrawide: "N/A", telephoto: "N/A", selfie: "18MP Center Stage" }, 
     battery: { capacity: "3,149 mAh", charging: "20W USB-C", wireless: "MagSafe (20W)" } 
   },
-
   { 
     id: 292, name: "iPhone 17 Pro", category: "iphones", type: "Brand New", 
     desc: "256GB / 512GB / 1TB Storage options available.", 
@@ -455,6 +454,7 @@ const products = [
     camera: { main: "200MP Main", ultrawide: "12MP Ultra-wide", telephoto: "50MP 5x Zoom", selfie: "12MP Selfie" }, 
     battery: { capacity: "5,000 mAh", charging: "45W Super Fast", wireless: "Yes (Qi)" } 
   },
+
   // --- LAPTOPS (COMPLETE MACBOOK PRICE LIST) ---
   { 
     id: 50, name: "MacBook Air 2015", category: "laptops", type: "UK Used", 
@@ -762,6 +762,7 @@ document.addEventListener("DOMContentLoaded", function() {
   renderProducts("all");
   setupFilterListeners();
   setupNativeDatalistSearch();
+  setupScrollToTop();
 });
 
 function setupThemeToggle() {
@@ -769,7 +770,6 @@ function setupThemeToggle() {
   const themeIcon = document.getElementById("themeIcon");
   const htmlElement = document.documentElement;
 
-  // Check saved preference or system preference
   const savedTheme = localStorage.getItem("tobex_theme");
   if (savedTheme) {
     htmlElement.setAttribute("data-theme", savedTheme);
@@ -858,7 +858,6 @@ function renderComparisonGridFromInputs() {
 
     const design = dev.design || { size: "Standard Spec", res: "Standard HD", refresh: "Standard", weight: "N/A" };
     const perf = dev.performance || { chip: "Standard Processor", ram: "Standard RAM", storage: "Various options" };
-    const cam = dev.camera || { main: "Equipped Camera", ultrawide: "N/A", telephoto: "N/A", selfie: "Equipped" };
     const bat = dev.battery || { capacity: "Standard Battery", charging: "Standard", wireless: "N/A" };
 
     const mediaCompareHTML = dev.image && dev.image !== "" 
@@ -952,5 +951,26 @@ function setupFilterListeners() {
       btn.classList.add("active");
       renderProducts(btn.getAttribute("data-category"));
     });
+  });
+}
+
+// Scroll to Top Logic
+function setupScrollToTop() {
+  const scrollBtn = document.getElementById("backToTopBtn");
+  if (!scrollBtn) return;
+
+  window.addEventListener("scroll", function() {
+    if (window.scrollY > 300) {
+      scrollBtn.style.display = "flex";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  });
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   });
 }

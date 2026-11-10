@@ -390,6 +390,12 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-buy-wa:hover {
+  opacity: 0.9;
 }
 
 /* Comparison Tool */
@@ -562,7 +568,7 @@ body {
   text-decoration: none;
 }
 
-/* Footer & Floating Button */
+/* Footer & Floating Action Buttons */
 .footer {
   border-top: 1px solid var(--card-border);
   padding: 30px 20px;
@@ -601,7 +607,32 @@ body {
   text-decoration: none;
 }
 
-/* Responsive */
+/* Back to Top Floating Arrow Button */
+#backToTopBtn {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+  z-index: 998;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+#backToTopBtn:hover {
+  transform: scale(1.08);
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
